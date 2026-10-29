@@ -14,7 +14,7 @@ sequenceDiagram
   Translator->>Project: addSegment(segment, note)
   Project->>Project: state = IN_TRANSLATION
   Editor->>Project: review(project)
-  Editor->>Project: validateQuality()
+  Editor->>Editor: validateQuality()
   Project->>Project: state = READY
   Project-->>Customer: deliverCertifiedTranslation()
   Project->>Project: state = DELIVERED

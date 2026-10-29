@@ -38,17 +38,31 @@
 - State-діаграма містить початковий і кінцевий стани та переходи за бізнес-сценаріями.
 - CRC-картки охоплюють `DocumentActor`, `Customer`, `Translator`, `Editor`, `TranslationProject`, `SourceDocument`, `LanguagePair`, `Glossary` і `TranslationSegment`.
 
-## 4. Перевірка відображення
+## 4. Запити до ШІ та перевірка convergence
 
-У репозиторії збережені исходні коди діаграм. Для перевірки їхнього відображення додані PNG-рендери:
+Для підготовки артефактів застосовано послідовність запитів:
 
-- [Use case (PlantUML)](../report/usecase.png)
-- [Class (Mermaid)](../report/class.png)
-- [Sequence (Mermaid)](../report/sequence.png)
-- [State (Mermaid)](../report/state.png)
+1. `/speckit-constitution` — сформувати правила моделі та SOLID-обмеження.
+2. `/speckit-specify` — описати службу перекладу, акторів, сценарії та критерії приймання.
+3. `/speckit-plan` — спланувати UML, CRC-картки та структуру репозиторію.
+4. `/speckit-tasks` — розкласти роботу на перевірювані завдання.
+5. `/speckit-implement` — створити вихідні файли діаграм, специфікації та CRC-картки.
+6. `/speckit-converge` — звірити узгодженість класів, послідовності, станів і вимог.
 
-У class-діаграмі `displayRole()` показаний як метод `DocumentActor`; його властивість `final` зафіксована в специфікації та цьому звіті, оскільки Mermaid classDiagram не має окремого стандартного маркера для final-методів. Зображення згенеровані з версій файлів, що лежать у `docs/`.
+Фінальний знімок репозиторію після convergence-проходу: [converge-repo.jpg](converge-repo.jpg). Він показує опублікований репозиторій із фінальним набором артефактів. Додатково перевірено валідність `docs/crc.xlsx` командою `unzip -t` і виконано рендер усіх чотирьох діаграм.
 
-## 5. Висновок
+## 5. Рендери та URL-и
+
+Коди перевірені у PlantUML/Mermaid renderer. Публічні посилання на файли:
+
+- [Use case source](https://github.com/tetoraillia/translationservice/blob/main/docs/usecase.puml) · [PNG](https://github.com/tetoraillia/translationservice/blob/main/report/usecase.png)
+- [Class source](https://github.com/tetoraillia/translationservice/blob/main/docs/class.mmd) · [PNG](https://github.com/tetoraillia/translationservice/blob/main/report/class.png)
+- [Sequence source](https://github.com/tetoraillia/translationservice/blob/main/docs/sequence.mmd) · [PNG](https://github.com/tetoraillia/translationservice/blob/main/report/sequence.png)
+- [State source](https://github.com/tetoraillia/translationservice/blob/main/docs/state.mmd) · [PNG](https://github.com/tetoraillia/translationservice/blob/main/report/state.png)
+- [CRC sheet XLSX](https://github.com/tetoraillia/translationservice/blob/main/docs/crc.xlsx)
+
+У class-діаграмі `displayRole()` має сигнатуру `displayRole() final void`; `performTask()` перевизначається конкретними акторами, а `addSegment()` має дві форми.
+
+## 6. Висновок
 
 Побудовано узгоджену UML-модель служби перекладу документів із трьома ролями, чотирма бізнес-сценаріями, абстракцією ролей, інтерфейсом контролю якості, CRC-картками та моделлю життєвого циклу проєкту.
