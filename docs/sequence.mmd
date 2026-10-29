@@ -13,6 +13,7 @@ sequenceDiagram
   Glossary-->>Project: preferredTranslation
   Translator->>Project: addSegment(segment, note)
   Project->>Project: state = IN_TRANSLATION
+  Project->>Project: state = IN_EDITING
   Editor->>Project: review(project)
   Editor->>Editor: validateQuality()
   Project->>Project: state = READY
