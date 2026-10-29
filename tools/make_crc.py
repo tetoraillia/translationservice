@@ -10,7 +10,7 @@ rows = [
     ("SourceDocument", "Описує файл оригіналу та його формат.", "TranslationProject, Customer"),
     ("LanguagePair", "Зберігає мову оригіналу та мову перекладу.", "TranslationProject, Customer"),
     ("Glossary", "Зберігає терміни та повертає рекомендований відповідник.", "TranslationProject, Translator"),
-    ("TranslationSegment", "Зберігає номер, оригінал і переклад сегмента.", "TranslationProject, Translator, Editor"),
+    ("TranslationSegment", "Зберігає номер, оригінал, переклад і стан перевірки сегмента.", "TranslationProject, Translator, Editor"),
 ]
 
 wb = Workbook()
