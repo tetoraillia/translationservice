@@ -60,6 +60,9 @@
 - [Sequence source](https://github.com/tetoraillia/translationservice/blob/main/docs/sequence.mmd) · [PNG](https://github.com/tetoraillia/translationservice/blob/main/report/sequence.png)
 - [State source](https://github.com/tetoraillia/translationservice/blob/main/docs/state.mmd) · [PNG](https://github.com/tetoraillia/translationservice/blob/main/report/state.png)
 - [CRC sheet XLSX](https://github.com/tetoraillia/translationservice/blob/main/docs/crc.xlsx)
+- [Таблиця варіантів Google Sheets](https://docs.google.com/spreadsheets/d/1bkgXq1hIMnqPgN_rW6AIDhOjtwFBymAs/edit)
+- [Методичні вказівки](https://docs.google.com/document/d/1qZac_8rFnl6p3fHYRvHrOFxLOG43KyVLwBKvs0jgALE/edit)
+- [Mermaid Live](https://mermaid.live/) · [PlantUML server](https://www.plantuml.com/plantuml/)
 
 У class-діаграмі `displayRole()` має сигнатуру `displayRole() final void`; `performTask()` перевизначається конкретними акторами, а `addSegment()` має дві форми.
 
