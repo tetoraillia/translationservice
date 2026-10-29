@@ -1,0 +1,9 @@
+stateDiagram-v2
+  [*] --> DRAFT
+  DRAFT --> SUBMITTED: замовник завантажив документ
+  SUBMITTED --> IN_TRANSLATION: перекладач прийняв проєкт
+  IN_TRANSLATION --> IN_EDITING: переклад усіх сегментів готовий
+  IN_EDITING --> IN_TRANSLATION: потрібне доопрацювання
+  IN_EDITING --> READY: редактор підтвердив якість
+  READY --> DELIVERED: замовник отримав засвідчений переклад
+  DELIVERED --> [*]

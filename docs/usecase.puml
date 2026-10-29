@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Замовник" as Customer
+actor "Перекладач" as Translator
+actor "Редактор" as Editor
+
+rectangle "Служба перекладу документів" {
+  usecase "Завантажити документ\nта обрати мовну пару" as UC1
+  usecase "Виконати переклад\nіз глосарієм" as UC2
+  usecase "Вичитати переклад\nта зафіксувати правки" as UC3
+  usecase "Отримати засвідчений\nпереклад" as UC4
+  usecase "Перевірити якість\nтермінології" as UC5
+}
+
+Customer --> UC1
+Translator --> UC2
+Translator --> UC5
+Editor --> UC3
+Customer --> UC4
+UC2 .> UC5 : <<include>>
+UC3 .> UC5 : <<include>>
+@enduml

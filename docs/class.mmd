@@ -1,0 +1,102 @@
+classDiagram
+direction LR
+
+class DocumentActor {
+  <<abstract>>
+  #String actorId
+  #String name
+  +DocumentActor(String actorId, String name)
+  +displayRole() void
+  +performTask() void
+}
+
+class Customer {
+  +Customer(String actorId, String name)
+  +performTask() void
+  +submitDocument(SourceDocument document, LanguagePair pair) TranslationProject
+}
+
+class Translator {
+  +Translator(String actorId, String name)
+  +performTask() void
+  +translate(TranslationProject project) void
+  +validateQuality() boolean
+}
+
+class Editor {
+  +Editor(String actorId, String name)
+  +performTask() void
+  +review(TranslationProject project) void
+  +validateQuality() boolean
+}
+
+class QualityControllable {
+  <<interface>>
+  +validateQuality() boolean
+}
+
+class TranslationProject {
+  -String projectId
+  -LanguagePair languagePair
+  -SourceDocument sourceDocument
+  -Glossary glossary
+  -List~TranslationSegment~ segments
+  -ProjectState state
+  +TranslationProject(String projectId, SourceDocument document, LanguagePair pair, Glossary glossary)
+  +addSegment(TranslationSegment segment) void
+  +addSegment(TranslationSegment segment, String note) void
+  +finalizeProject() void
+}
+
+class SourceDocument {
+  -String fileName
+  -String format
+  -int pageCount
+  +SourceDocument(String fileName, String format, int pageCount)
+}
+
+class LanguagePair {
+  -String sourceLanguage
+  -String targetLanguage
+  +LanguagePair(String sourceLanguage, String targetLanguage)
+}
+
+class Glossary {
+  -Map~String,String~ terms
+  +addTerm(String source, String target) void
+  +lookup(String source) String
+}
+
+class TranslationSegment {
+  -int number
+  -String sourceText
+  -String translatedText
+  +TranslationSegment(int number, String sourceText)
+  +setTranslation(String translatedText) void
+}
+
+class ProjectState {
+  <<enumeration>>
+  DRAFT
+  SUBMITTED
+  IN_TRANSLATION
+  IN_EDITING
+  READY
+  DELIVERED
+}
+
+DocumentActor <|-- Customer
+DocumentActor <|-- Translator
+DocumentActor <|-- Editor
+QualityControllable <|.. Translator
+QualityControllable <|.. Editor
+TranslationProject *-- SourceDocument : owns
+TranslationProject *-- TranslationSegment : contains
+TranslationProject o-- Glossary : uses
+TranslationProject --> LanguagePair : selects
+TranslationProject --> ProjectState : has
+Translator ..> TranslationProject : translates
+Editor ..> TranslationProject : reviews
+Customer ..> TranslationProject : requests
+
+%% displayRole() is final in the Java design; performTask() is overridden by each concrete actor.

@@ -1,0 +1,20 @@
+sequenceDiagram
+  actor Customer as Замовник
+  participant Project as TranslationProject
+  participant Translator as Перекладач
+  participant Glossary as Glossary
+  participant Editor as Редактор
+
+  Customer->>Project: submitDocument(document, languagePair)
+  Project->>Project: state = SUBMITTED
+  Project-->>Customer: projectId
+  Translator->>Project: translate(project)
+  Project->>Glossary: lookup(term)
+  Glossary-->>Project: preferredTranslation
+  Translator->>Project: addSegment(segment, note)
+  Project->>Project: state = IN_TRANSLATION
+  Editor->>Project: review(project)
+  Editor->>Project: validateQuality()
+  Project->>Project: state = READY
+  Project-->>Customer: deliverCertifiedTranslation()
+  Project->>Project: state = DELIVERED
